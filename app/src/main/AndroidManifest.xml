@@ -2,6 +2,9 @@
 <manifest package="com.example.everardo.uploadphoto"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -18,11 +21,17 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".BootBroadcastReceiver" android:exported="true">
+        <service android:name=".UploadPhotoJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
+
+        <receiver android:name=".NewPhotoBroadcastReceiver" android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+
+                <action android:name="android.hardware.action.NEW_PICTURE" />
+                <data android:mimeType="image/*" />
             </intent-filter>
         </receiver>
+
     </application>
 
 </manifest>

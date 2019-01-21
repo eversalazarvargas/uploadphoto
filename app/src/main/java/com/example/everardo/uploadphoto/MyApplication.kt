@@ -13,7 +13,9 @@ class MyApplication: Application() {
 
         Log.i("PROBANDO", "MyApplication.onCreate()")
 
-        val uploadPhotoScheduler = UploadPhotoScheduler()
+        val uploadPhotoScheduler = UploadPhotoScheduler(this)
         uploadPhotoScheduler.start()
+        uploadPhotoScheduler.syncAllPeriodic()
+
     }
 }
